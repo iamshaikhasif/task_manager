@@ -3,6 +3,7 @@ const express = require('express');
 const tasksRouter = require('./routers/tasks_router');
 const app = express();
 const dbConnection = require('./db/db_connection')
+const errorHandler = require('./middleware/errorHandler')
 
 
 const port = process.env.PORT;
@@ -17,6 +18,7 @@ app.get('/', (req, res)=>{
 
 //route for task 
 app.use('/api/v1/tasks', tasksRouter)
+app.use(errorHandler)
 
 
 const startServer = () => {
